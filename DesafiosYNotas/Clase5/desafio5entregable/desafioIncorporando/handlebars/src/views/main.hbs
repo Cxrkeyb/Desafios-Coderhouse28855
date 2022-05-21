@@ -1,0 +1,9 @@
+{{#if cargar}}
+    <h2 class="text-primary">Ingrese un producto</h2>
+    {{>inputs}}
+    <a href="/productos">Ir a la lista de productos</a>
+{{else}}
+    <h2 class="text-primary">Lista de productos</h2>
+    {{>productview}}
+    <a href="/">Ir al formulario de productos</a>
+{{/if}}

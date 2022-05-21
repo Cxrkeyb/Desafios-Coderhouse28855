@@ -1,0 +1,75 @@
+<h2>Formulario productos</h2>
+<div>
+    <h5 class="font-italic">Nombre:</h5>
+    <label class="font-italic" for="name"></label>
+    <input type="text" name="name" id="name"/>
+    <h5 class="font-italic">Precio:</h5>
+    <input  type="text" name="price" id="price"/>
+    <h5 class="font-italic">Foto URL:</h5>
+    <input type="text" name="thumbnail" id="thumbnail"/>
+    <br>
+    <button class="sendB bg-success text-white" id="send">Enviar</button>
+</div>
+<h2>Productos</h2>
+<table class="table">
+    <thead>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Foto</th>
+    </thead>
+    <tbody id="products">
+    </tbody>
+</table>
+<h2>Chat Usuarios</h2>
+<div>
+    <h5 class="font-italic">Email:</h5>
+    <label class="font-italic" for="email"></label>
+    <input type="text" name="email" id="email"/>
+    <div id="historychat"></div>
+    <h5 class="font-italic">Mensaje:</h5>
+    <label class="font-italic" for="message"></label>
+    <input type="text" name="message" id="message"/>
+    <button id="chatsend">Enviar</button>
+</div>
+
+<script>
+        const socket = io();
+
+        const name = document.getElementById("name")
+        const thumbnail = document.getElementById("thumbnail")
+        const price = document.getElementById("price")
+        const boton = document.getElementById("send")
+
+        const email = document.getElementById("email")
+        const message = document.getElementById("message")
+        const botonchat = document.getElementById("chatsend")
+
+        boton.addEventListener("click", ()=> socket.emit("messageProducts",{name: name.value, price: price.value, thumbnail: thumbnail.value}))
+        botonchat.addEventListener("click", ()=> socket.emit("messageChat", {email: email.value, message: message.value}))
+        socket.on("messageBack", (data)=>{
+            let innerText = ``;
+            data.map((values)=>{
+                innerText+=`
+                    <tr>
+                        <th scope="row">${values.name}</th>
+                        <th>${values.price}</th>
+                        <th><img class="imageview" src="${values.thumbnail}" alt="${values.name}"/></th>
+                    </tr>
+                `
+            })
+            document.getElementById("products").innerHTML = innerText;
+        })
+        socket.on("messageChatBack", (data)=>{
+            let innerText = ``;
+            data.map((values)=>{
+                innerText+=`
+                <p>
+                    <span class="user">${values.email}  </span>
+                    <span class="time">${values.time}  </span>
+                    <span class="usermessage">${values.message}</span>
+                </p>
+                `
+            })
+            document.getElementById("historychat").innerHTML = innerText;
+        })
+</script>

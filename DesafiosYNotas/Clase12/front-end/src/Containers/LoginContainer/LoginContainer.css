@@ -1,0 +1,17 @@
+.containerLogin{
+    background-color: #3c86d1;
+    border: 5px solid #3b3b3b;
+    border-radius: 20px;
+    width: 500px;
+    padding-bottom: 50px;
+    margin-top: 20px;
+}
+.inputLogin{
+    width: calc(40vw);
+}
+.cLogin{
+    margin: 50px calc(20vw);
+}
+.color{
+    color: white !important; 
+}

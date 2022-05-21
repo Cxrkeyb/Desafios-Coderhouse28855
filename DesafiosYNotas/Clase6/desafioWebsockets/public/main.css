@@ -1,0 +1,18 @@
+.sendB{
+    margin-top: 20px;
+}
+.imageview{
+    width: 64px;
+    height: 64px;
+}
+.user{
+    font-weight: bold;
+    color: blue;
+}
+.time{
+    color: brown;
+}
+.usermessage{
+    font-style: italic;
+    color: green;
+}

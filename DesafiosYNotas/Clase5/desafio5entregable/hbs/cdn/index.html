@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HandleBars cdn</title>
+</head>
+<body>
+<div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+<script>
+    const template = Handlebars.compile("<h1>{{titulo}}</h1><h2>{{subtitulo}}</h2>")
+    const info = {
+        titulo: "Soy un titulo",
+        subtitulo: "Soy un subtitulo"
+    }
+    const html = template(info);
+    document.querySelector("div").innerHTML= html
+</script>
+</body>
+</html>

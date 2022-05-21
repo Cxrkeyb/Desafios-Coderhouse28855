@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Foto</th>
+    </thead>
+    <tbody id="products">
+        {{#each data}}
+        <tr>
+            <th scope="row">{{this.nombre}}</th>
+            <th>{{this.price}}</th>
+            <th><img class="imageview" src="{{this.thumbnail}}"/></th>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

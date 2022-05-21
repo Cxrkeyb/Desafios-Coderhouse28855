@@ -1,0 +1,22 @@
+.flex{
+    display: flex;
+}
+.justify-content-center{
+    justify-content: center;
+}
+.flex-direction-column{
+    flex-direction: column;
+}
+.align-center{
+    align-items: center;
+}
+.gap{
+    gap: 20px;
+}
+.botonAleatorio{
+    width: 300px;
+    margin-top: 200px ;
+}
+.containerRandom{
+    padding-top: 20px;
+}

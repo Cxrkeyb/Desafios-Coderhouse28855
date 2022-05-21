@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Foto</th>
+    </thead>
+    <tbody>
+        <% data.forEach(subdata => { %>
+            <tr>
+                <th scope="row"><%= subdata.nombre %> </th>
+                <th><%= subdata.price %></th>
+                <th><img class="imageview" src="<%= subdata.thumbnail %>" alt="<%= subdata.nombre %> imagen"/></th>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

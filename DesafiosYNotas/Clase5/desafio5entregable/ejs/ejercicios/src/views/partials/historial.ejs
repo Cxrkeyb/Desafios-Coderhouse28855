@@ -1,0 +1,24 @@
+<div>
+    <h3></h3>
+    <table>
+        <tr>
+            <% if(data.length !== 0){ %>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                </tr>
+                <% data.forEach(function(persona){ %>
+                    <tr>
+                        <td><%= persona.nombre %></td>
+                        <td><%= persona.apellido %></td>
+                        <td><%= persona.edad %></td>
+                    </tr>
+                <%}) %>
+            <% }else{ %>
+                <h2 style="color:black; background-color:red;">No se encontraron datos </h2>
+            <% } %>
+            
+        </tr>
+    </table>
+</div>

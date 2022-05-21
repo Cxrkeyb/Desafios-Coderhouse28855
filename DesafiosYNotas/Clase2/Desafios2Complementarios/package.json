@@ -1,0 +1,12 @@
+{
+  "name": "desafios-complementarios",
+  "version": "1.0.0",
+  "main": "Desafios1Complementarios.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

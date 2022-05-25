@@ -9,6 +9,7 @@ export default function LoginContainer() {
     const [autorizado, setAutorizado] = useState(false)
     const [username, setUsername] = useState("")
     const [goodbay, setGoodBay] = useState(false)
+    const [errorLogin, setErrorLogin] = useState(false)
     const [usuarioData, setUsuarioData] = useState({
         userName: "",
         password: ""
@@ -16,7 +17,7 @@ export default function LoginContainer() {
     const URI = 'http://localhost:8080/api/user/'
     axios.defaults.withCredentials = true
     useEffect(()=>{
-        axios.get(`${URI}/login`).then((res)=>{console.log(res);setAutorizado(res.data.autorizado);setUsername(res.data.username);})
+        axios.get(`${URI}/login`).then((res)=>{setAutorizado(res.data.autorizado);setUsername(res.data.username);})
     }, [])
     const handleFormChange = (e) => {
         setUsuarioData({
@@ -25,7 +26,7 @@ export default function LoginContainer() {
         })
     };
     const handleLogin = async () => {
-        await axios.post(`${URI}/user`, usuarioData).then((res)=>{setAutorizado(res.data.autorizado);setUsername(res.data.userName); console.log(res)})
+        await axios.post(`${URI}/user`, usuarioData).then((res)=>{setAutorizado(res.data.autorizado);setUsername(res.data.username); setGoodBay(false); setErrorLogin(res.data.error)})
     }
     const handleLogout = async () => {
         await axios.get(`${URI}/logout`).then((res)=>{setAutorizado(res.data.autorizado);setGoodBay(true)})
@@ -44,6 +45,7 @@ export default function LoginContainer() {
                 )}
                 <Link className='goToAnother' to="/register">Ir a registrarte</Link>
             </Grid>
+            {errorLogin ? <h2>Error al ingresar el usuario o la contraseña</h2> : <></>}
             <Button className='botonAleatorio' onClick={handleLogin} variant="contained">Ingresar usuario</Button>
             {goodbay ? <h2>Hasta luego {username}</h2> : <></>}
             {autorizado ? <ProductosGenerator handleLogout={handleLogout} username={username} /> : <></>}

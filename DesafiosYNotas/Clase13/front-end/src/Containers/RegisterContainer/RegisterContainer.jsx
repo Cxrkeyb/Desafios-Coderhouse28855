@@ -8,6 +8,7 @@ export default function RegisterContainer() {
   const inputs = [{name: "userName", placeholder: "Nombre del usuario"}, {name: "password", placeholder: "Contraseña del usuario"}, {name: "firstName", placeholder:"Nombre"}, {name: "lastName", placeholder:"Apellido"}, {name: "email", placeholder: "Correo del usuario"},];
 	const URI="http://localhost:8080/api/user"
 	const handleFormChange = (e) => {
+		e.preventDefault();
 		setUsuarioData({
 			...usuarioData,
 			[e.target.name]: e.target.value

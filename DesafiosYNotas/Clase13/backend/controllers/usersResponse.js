@@ -6,13 +6,13 @@ import { getUserByUsername, createUser, getUser } from "../dao/users.js";
 const loginUser = async (req,res) =>{
   const {userName, password} = req.body;
   try {
-        const user = await getUser({userName, password});
+        const user = await getUser(userName, password);
         if (user){
             const userToken = jwt.sign({ userName: user.userName, firstName: user.firstName, lastName: user.lastName, email: user.email, timestamp: new Date().toISOString() }, process.env.SECRET, {expiresIn: "1h"});
             req.session.token = {token: userToken, userName: user.userName}
-            res.send({autorizado: true, username: req.session.token.userName})
+            res.send({autorizado: true, username: userName, error: false})
         }else{
-            res.send({autorizado: false})
+            res.send({autorizado: false, error: true})
         }
   } catch (error) {
     console.log(error);
@@ -20,7 +20,6 @@ const loginUser = async (req,res) =>{
 }
 const detectToken = (req, res) => {
     if(req.session.token){
-        console.log(req.session.token.userName)
         res.send({autorizado: true, username: req.session.token.userName})
     }else{
         res.send({autorizado: false});
@@ -42,6 +41,5 @@ const registerUser = async (req, res) => {
         req.session.token = {token: userToken, userName: user.userName};
         res.send(true)
     }
-    
 }
 export {loginUser, detectToken, deleteUserReq, registerUser}

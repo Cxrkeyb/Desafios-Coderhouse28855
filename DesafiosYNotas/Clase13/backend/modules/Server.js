@@ -49,10 +49,10 @@ function Server(){
     app.use(notFoundRoutePath, notFoundRouter)
 
     const server = app.listen(port, ()=> {
-    console.log(`Server iniciado en el http://localhost:${port}`)
+      console.log(`Server iniciado en el http://localhost:${port}`)
     });
     server.on('error', (err)=>{
-    console.log(err)
+      console.log(err)
     })  
 }
 
